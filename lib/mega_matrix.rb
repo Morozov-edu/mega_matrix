@@ -10,7 +10,7 @@ module MegaMatrix
   end
 end
 
-# 1. Создание матриц (можно использовать как шаблон)
+# 1. Создание матриц (можно использовать как шаблон) (Юра)
 module Genetrix
   class Error < StandardError; end
 
@@ -42,28 +42,28 @@ module Genetrix
 end
 
 
-# 2. Доступ к элементам и изменение
+# 2. Доступ к элементам и изменение (Тёма)
 module Accesstrix
   class Error < StandardError; end
   # Тут писать функции
 end
 
 
-# 3. Арифметические операции
+# 3. Арифметические операции (Миша)
 module Arifmetrix
   class Error < StandardError; end
   # Тут писать функции
 end
 
 
-# 4. Линейная алгебра и численные методы
+# 4. Линейная алгебра и численные методы (Толя)
 module Linetrix
   class Error < StandardError; end
   # Тут писать функции
 end
 
 
-# 5. Преобразования и специальные операции
+# 5. Преобразования и специальные операции (Давид)
 module Spectrix
   class Error < StandardError; end
   # Тут писать функции
