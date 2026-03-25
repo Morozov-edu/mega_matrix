@@ -10,7 +10,7 @@ module MegaMatrix
   end
 end
 
-# 1. Создание матриц (можно использовать как шаблон)
+# 1. Создание матриц (можно использовать как шаблон) (Для Юры)
 module Genetrix
   class Error < StandardError; end
 
