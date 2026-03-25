@@ -8,6 +8,10 @@ module MegaMatrix
   def self.help # Не забыть описать!!!
     puts "Тут и так все понято"
   end
+
+  class Matrix
+
+  end
 end
 
 # 1. Создание матриц (можно использовать как шаблон) (Юра)
@@ -52,7 +56,90 @@ end
 # 3. Арифметические операции (Миша)
 module Arifmetrix
   class Error < StandardError; end
-  # Тут писать функции
+
+  def self.plus(matrix_1, matrix_2)
+    check_sizes(matrix_1, matrix_2)
+
+    rows = matrix_1.size
+    cols = matrix_1[0].size
+
+    result = Genetrix.new(rows, cols, 0)   # ← создаём нулевую матрицу
+
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        result[i][j] = matrix_1[i][j] + matrix_2[i][j]
+      end
+    end
+    result
+  end
+
+  def self.minus(matrix_1, matrix_2)
+    check_sizes(matrix_1, matrix_2)
+
+    rows = matrix_1.size
+    cols = matrix_1[0].size
+
+    result = Genetrix.new(rows, cols, 0)
+
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        result[i][j] = matrix_1[i][j] - matrix_2[i][j]
+      end
+    end
+    result
+  end
+
+  def self.multi_scalar(matrix, scalar)
+    raise Error, "Скаляр должен быть числом" unless scalar.is_a?(Numeric)
+
+    rows = matrix.size
+    cols = matrix[0].size
+
+    result = Genetrix.new(rows, cols, 0)
+
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        result[i][j] = matrix[i][j] * scalar
+      end
+    end
+    result
+  end
+
+  def self.multi_matrix(matrix_1, matrix_2)
+    # Проверка совместимости: число столбцов первой = число строк второй
+    if matrix_1[0].size != matrix_2.size
+      raise Arifmetrix::Error, "Несовместимые размеры для умножения"
+    end
+
+    rows = matrix_1.size
+    cols = matrix_2[0].size
+    common = matrix_1[0].size  # общая размерность
+
+    # Создаём нулевую матрицу результата через Genetrix
+    result = Genetrix.new(rows, cols, 0)
+
+    # Основные циклы умножения
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        sum = 0
+        (0...common).each do |k|
+          sum += matrix_1[i][k] * matrix_2[k][j]
+        end
+        result[i][j] = sum
+      end
+    end
+
+    result
+  end
+
+  private
+
+  def self.check_sizes(matrix_1, matrix_2)
+    if matrix_1.size != matrix_2.size || matrix_1[0].size != matrix_2[0].size
+      raise Error, "Bad sizes!"
+    end
+  end
+
 end
 
 
