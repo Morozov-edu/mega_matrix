@@ -23,6 +23,30 @@ module MegaMatrix
       result_data = Arifmetrix.plus(@data, extract_data(other))
       self.class.new(result_data)
     end
+
+    def -(other)
+      result_data = Arifmetrix.minus(@data, extract_data(other))
+      self.class.new(result_data)
+    end
+
+    def extract_data(other)
+      if other.is_a?(Matrix)
+        other.data
+      elsif other.is_a?(Array)
+        other
+      else
+        raise ArgumentError, "Ожидается Matrix или Array"
+      end
+    end
+
+    def to_s
+      Genetrix.pprint(@data)
+    end
+
+    def to_a
+      @data
+    end
+
   end
 end
 
@@ -47,7 +71,7 @@ module Genetrix
 
   # Красивый вывод
   def self.pprint(matrix)
-    matrix_temp = matrix.dup
+    matrix_temp = matrix.respond_to?(:to_a) ? matrix.to_a : matrix
     max_width = matrix_temp.flatten.map { |e| e.to_s.length }.max
 
     matrix_temp.map do |row|
