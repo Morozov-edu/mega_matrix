@@ -59,7 +59,34 @@ end
 # 4. Линейная алгебра и численные методы
 module Linetrix
   class Error < StandardError; end
-  # Тут писать функции надо
+
+ def detrix(matrix)
+  n = matrix.size
+  return nil unless matrix.is_a?(Array) && n > 0
+  return nil unless matrix.all? { |row| row.is_a?(Array) && row.size == n }
+  
+  return matrix[0][0] if n == 1
+  
+  if n == 2
+    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+  end
+  
+  det = 0
+  n.times do |j|
+    minor = (1...n).map do |i|
+      matrix[i][0...j] + matrix[i][j+1..-1]
+    end
+    
+    # Вычисляем знак
+    sign = j.even? ? 1 : -1
+    
+    # Рекурсивный вызов
+    det += sign * matrix[0][j] * determinant(minor)
+  end
+  
+  det
+end
+
 end
 
 
