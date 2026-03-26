@@ -85,6 +85,16 @@ module Linetrix
   end
   
   det
+ end
+
+def tracix(matrix)
+  n = matrix.size
+  sum = 0
+  
+  n.times do |i|
+      sum += matrix[i][i]
+    end
+  sum
 end
 
 end
