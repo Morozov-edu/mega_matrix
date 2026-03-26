@@ -50,6 +50,11 @@ module MegaMatrix
       self.class.new(result_data)
     end
 
+    def hadamard_product(other)
+      result_data = Arifmetrix.hadamard_product(@data, extract_data(other))
+      self.class.new(result_data)
+    end
+
     def extract_data(other)
       if other.is_a?(Matrix)
         other.data
@@ -211,6 +216,23 @@ module Arifmetrix
     result = matrix.dup
     (n - 1).times do
       result = self.multi_matrix(result, matrix)
+    end
+
+    result
+  end
+
+  def self.hadamard_product(matrix_1, matrix_2)
+    check_sizes(matrix_1, matrix_2)
+
+    rows = matrix_1.size
+    cols = matrix_1[0].size
+
+    result = Genetrix.new(rows, cols, 0)
+
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        result[i][j] = matrix_1[i][j] * matrix_2[i][j]
+      end
     end
 
     result
