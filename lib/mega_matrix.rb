@@ -66,5 +66,6 @@ end
 # 5. Преобразования и специальные операции
 module Spectrix
   class Error < StandardError; end
-  # Тут писать функции
+  # Тут писать функции 
+  
 end
