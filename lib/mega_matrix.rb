@@ -29,6 +29,27 @@ module MegaMatrix
       self.class.new(result_data)
     end
 
+    def *(other)
+      if other.is_a?(Matrix)
+        result_data = Arifmetrix.multi_matrix(@data, extract_data(other))
+      elsif other.is_a?(Numeric)
+        result_data = Arifmetrix.multi_scalar(@data, other)
+      else
+        raise ArgumentError, "Ожидается Matrix или Numeric"
+      end
+      self.class.new(result_data)
+    end
+
+    def /(other)
+      result_data = Arifmetrix.div_scalar(@data, other)
+      self.class.new(result_data)
+    end
+
+    def **(power)
+      result_data = Arifmetrix.degree_matrix(@data, power)
+      self.class.new(result_data)
+    end
+
     def extract_data(other)
       if other.is_a?(Matrix)
         other.data
@@ -79,6 +100,13 @@ module Genetrix
     end.join("\n")
 
   end
+
+  # Единичная матрица
+  def self.identity_matrix(size)
+    matrix = Genetrix.new(size, size, 0)
+    size.times { |i| matrix[i][i] = 1 }
+    matrix
+  end
 end
 
 
@@ -99,7 +127,7 @@ module Arifmetrix
     rows = matrix_1.size
     cols = matrix_1[0].size
 
-    result = Genetrix.new(rows, cols, 0)   # ← создаём нулевую матрицу
+    result = Genetrix.new(rows, cols, 0)   
 
     (0...rows).each do |i|
       (0...cols).each do |j|
@@ -163,6 +191,26 @@ module Arifmetrix
         end
         result[i][j] = sum
       end
+    end
+
+    result
+  end
+
+  def self.div_scalar(matrix, scalar)
+    raise Arifmetrix::Error, "Деление на ноль" if scalar == 0
+    self.multi_scalar(matrix, 1.0 / scalar)
+  end
+
+  def self.degree_matrix(matrix, n)
+    raise Arifmetrix::Error, "Степень должна быть целочисленной" unless n.is_a?(Integer)
+    raise Arifmetrix::Error, "Степень должна быть неотрицательной" if n < 0
+    raise Arifmetrix::Error, "матрица должна быть квадратной" unless matrix.size == matrix[0].size
+
+    return Genetrix.identity_matrix(matrix.size) if n == 0
+    
+    result = matrix.dup
+    (n - 1).times do
+      result = self.multi_matrix(result, matrix)
     end
 
     result
