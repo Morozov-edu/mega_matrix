@@ -10,7 +10,19 @@ module MegaMatrix
   end
 
   class Matrix
+    attr_reader :data
 
+    # Инициализация: принимает двумерный массив
+    def initialize(data)
+      raise ArgumentError, "Данные должны быть двумерным массивом" unless data.is_a?(Array) && data.all? { |row| row.is_a?(Array) }
+      @data = data
+    end
+
+    # Сложение
+    def +(other)
+      result_data = Arifmetrix.plus(@data, extract_data(other))
+      self.class.new(result_data)
+    end
   end
 end
 
