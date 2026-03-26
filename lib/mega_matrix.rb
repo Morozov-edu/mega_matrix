@@ -59,7 +59,7 @@ end
 # 4. Линейная алгебра и численные методы
 module Linetrix
   class Error < StandardError; end
-  # Тут писать функции
+  # Тут писать функции надо
 end
 
 
