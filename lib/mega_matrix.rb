@@ -46,6 +46,9 @@ end
 module Accesstrix
   class Error < StandardError; end
   # Тут писать функции
+  def self.index(matrix, i, j)
+    matrix[i][j]
+  end
 end
 
 
