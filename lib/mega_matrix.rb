@@ -152,6 +152,60 @@ module MegaMatrix
       new_data = Accesstrix.swap_columns(@data, i, j)
       self.class.new(new_data)
     end
+
+    # Инициализация: принимает двумерный массив
+    def initialize(data)
+      raise ArgumentError, "Данные должны быть двумерным массивом" unless data.is_a?(Array) && data.all? { |row| row.is_a?(Array) }
+      @data = data
+    end
+
+    # Сложение
+    def +(other)
+      result_data = Arifmetrix.plus(@data, extract_data(other))
+      self.class.new(result_data)
+    end
+
+    def -(other)
+      result_data = Arifmetrix.minus(@data, extract_data(other))
+      self.class.new(result_data)
+    end
+
+    def *(other)
+      if other.is_a?(Matrix)
+        result_data = Arifmetrix.multi_matrix(@data, extract_data(other))
+      elsif other.is_a?(Numeric)
+        result_data = Arifmetrix.multi_scalar(@data, other)
+      else
+        raise ArgumentError, "Ожидается Matrix или Numeric"
+      end
+      self.class.new(result_data)
+    end
+
+    def /(other)
+      result_data = Arifmetrix.div_scalar(@data, other)
+      self.class.new(result_data)
+    end
+
+    def **(power)
+      result_data = Arifmetrix.degree_matrix(@data, power)
+      self.class.new(result_data)
+    end
+
+    def hadamard_product(other)
+      result_data = Arifmetrix.hadamard_product(@data, extract_data(other))
+      self.class.new(result_data)
+    end
+
+    def extract_data(other)
+      if other.is_a?(Matrix)
+        other.data
+      elsif other.is_a?(Array)
+        other
+      else
+        raise ArgumentError, "Ожидается Matrix или Array"
+      end
+    end
+
   end
 end
 
