@@ -5,32 +5,18 @@ require_relative "lib/mega_matrix/version"
 Gem::Specification.new do |spec|
   spec.name = "mega_matrix"
   spec.version = MegaMatrix::VERSION
-  spec.authors       = [
-    "Morozov Yuriy",
-    "Pavlenko Mikhail",
-    "Movsesyan Anatoliy",
-    "Grigoryan Artyom",
-    "Arutyunyan David"
-  ]
- 
-  spec.email         = [
-    "iumo@sfedu.ru",
-    "mipa@sfedu.ru",
-    "amovsesian@sfedu.ru"
-  ]
+  spec.authors = ["Morozov Yuriy, Pavlenko Mikhail, Movsesyan Anatoliy, Grigoryan Artyom, Arutyunyan David"]
+  spec.email = ["iumo@sfedu.ru, mipa@sfedu.ru"]
 
-spec.summary = "Ruby library for matrix operations"
-  spec.description = "MegaMatrix is a Ruby library that provides basic matrix operations such as addition, subtraction, scalar multiplication, and matrix multiplication."
+  spec.summary = "Write a short summary, because RubyGems requires one."
+  spec.description = "Write a longer description or delete this line."
   spec.homepage = "https://example.com"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
-
-  spec.homepage = "https://github.com/Morozov-edu/mega_matrix"
-  spec.metadata = {
-    "homepage_uri"     => spec.homepage,
-    "source_code_uri"  => "https://github.com/Morozov-edu/mega_matrix",
-    "changelog_uri"    => "https://github.com/Morozov-edu/mega_matrix/blob/main/CHANGELOG.md",
-  }
+  spec.metadata["allowed_push_host"] = "https://example.com"
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = "https://example.com"
+  spec.metadata["changelog_uri"] = "https://example.com"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
