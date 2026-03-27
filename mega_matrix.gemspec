@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "mega_matrix"
   spec.version = MegaMatrix::VERSION
   spec.authors = ["Morozov Yuriy, Pavlenko Mikhail, Movsesyan Anatoliy, Grigoryan Artyom, Arutyunyan David"]
-  spec.email = ["iumo@sfedu.ru, mipa@sfedu.ru"] # Добавить каждому сфедушную почту
+  spec.email = ["iumo@sfedu.ru, mipa@sfedu.ru, amovsesian@sfedu.ru"] # Добавить каждому сфедушную почту
 
   spec.summary = "Write a short summary, because RubyGems requires one."
   spec.description = "Write a longer description or delete this line."
