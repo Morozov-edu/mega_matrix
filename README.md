@@ -1,43 +1,84 @@
 # MegaMatrix
 
-TODO: Delete this and the text below, and describe your gem
+MegaMatrix — это библиотека на Ruby для работы с матрицами.  
+Проект реализует базовые операции линейной алгебры и удобный интерфейс для работы с матричными данными.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mega_matrix`. To experiment with that code, run `bin/console` for an interactive prompt.
+---
 
-## Installation
+## 🚀 Возможности
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+- Создание матриц
+- Сложение и вычитание матриц
+- Умножение на скаляр
+- Матричное умножение
+- Доступ к элементам
+- Красивый вывод матриц
+- Расширяемая архитектура (разделение по модулям)
 
-Install the gem and add to the application's Gemfile by executing:
+---
+
+## 📦 Установка
+
+### 1. Сборка gem
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem build mega_matrix.gemspec
+2. Установка
+gem install mega_matrix-0.1.0.gem
+🧪 Использование
+require 'mega_matrix'
+
+# Создание матриц
+m1 = MegaMatrix::Matrix.new([[1, 2], [3, 4]])
+m2 = MegaMatrix::Matrix.new([[5, 6], [7, 8]])
+
+# Сложение
+puts m1 + m2
+
+# Умножение на скаляр
+result = MegaMatrix::Arifmetrix.multi_scalar(m1.data, 2)
+puts result
+
+# Доступ к элементам
+value = MegaMatrix::Accesstrix.get(m1.data, 0, 1)
+puts value
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+🧠 Архитектура проекта
 
-```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-```
+Проект разделён на модули:
 
-## Usage
+* MegaMatrix::Matrix — основной класс матрицы
 
-TODO: Write usage instructions here
+* Genetrix — генерация матриц
 
-## Development
+* Arifmetrix — арифметические операции
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+* Accesstrix — доступ к элементам
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+* Linetrix — линейная алгебра (расширение)
 
-## Contributing
+* Spectrix — дополнительные операции
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mega_matrix. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/mega_matrix/blob/master/CODE_OF_CONDUCT.md).
 
-## License
+## 👨‍💻 Авторы
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Проект выполнен командой:
 
-## Code of Conduct
+* Морозов Юрий
 
-Everyone interacting in the MegaMatrix project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/mega_matrix/blob/master/CODE_OF_CONDUCT.md).
+* Павленко Михаил
+
+* Григорян Артём
+
+* Арутюнян Давид
+
+* Мовсесян Анатолий
+
+
+## ⚠️ Особенности
+Библиотека работает с двумерными массивами Ruby
+
+Проверяется корректность размеров матриц
+
+Ошибки обрабатываются через собственные классы (Error)
