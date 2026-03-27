@@ -239,7 +239,6 @@ module Genetrix
       raise Error, "Все строки должны быть одинаковой длины"
     end
 
-    # Делаем копию, чтобы избежать мутаций
     array.map(&:dup)
   end
 
