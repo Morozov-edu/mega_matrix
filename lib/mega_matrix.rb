@@ -387,7 +387,7 @@ module Arifmetrix
     rows = matrix_1.size
     cols = matrix_1[0].size
 
-    result = Genetrix.new(rows, cols, 0)   # ← создаём нулевую матрицу
+    result = Genetrix.new(rows, cols, 0)   
 
     (0...rows).each do |i|
       (0...cols).each do |j|
@@ -450,6 +450,43 @@ module Arifmetrix
           sum += matrix_1[i][k] * matrix_2[k][j]
         end
         result[i][j] = sum
+      end
+    end
+
+    result
+  end
+
+  def self.div_scalar(matrix, scalar)
+    raise Arifmetrix::Error, "Деление на ноль" if scalar == 0
+    self.multi_scalar(matrix, 1.0 / scalar)
+  end
+
+  def self.degree_matrix(matrix, n)
+    raise Arifmetrix::Error, "Степень должна быть целочисленной" unless n.is_a?(Integer)
+    raise Arifmetrix::Error, "Степень должна быть неотрицательной" if n < 0
+    raise Arifmetrix::Error, "матрица должна быть квадратной" unless matrix.size == matrix[0].size
+
+    return Genetrix.identity_matrix(matrix.size) if n == 0
+    
+    result = matrix.dup
+    (n - 1).times do
+      result = self.multi_matrix(result, matrix)
+    end
+
+    result
+  end
+
+  def self.hadamard_product(matrix_1, matrix_2)
+    check_sizes(matrix_1, matrix_2)
+
+    rows = matrix_1.size
+    cols = matrix_1[0].size
+
+    result = Genetrix.new(rows, cols, 0)
+
+    (0...rows).each do |i|
+      (0...cols).each do |j|
+        result[i][j] = matrix_1[i][j] * matrix_2[i][j]
       end
     end
 
